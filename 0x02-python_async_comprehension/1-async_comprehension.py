@@ -1,20 +1,14 @@
 #!/usr/bin/env python3
-"""Contains a function that returns list of delays"""
-
-import asyncio
-import random
-from typing import List, Callable
-
-
-wait_random = __import__('0-basic_async_syntax').wait_random
+'''Task 1's module.
+'''
+from typing import List
+from importlib import import_module as using
 
 
-async def wait_n(n: int, max_delay: int) -> List[float]:
-    """
-    an async function that returns the list of delays in an ascending
-    order
-    """
-    total_delays: List[float] = await asyncio.gather(
-        *(wait_random(max_delay) for h in range(n))
-        )
-    return sorted(total_delays)
+async_generator = using('0-async_generator').async_generator
+
+
+async def async_comprehension() -> List[float]:
+    '''Creates a list of 10 numbers from a 10-number generator.
+    '''
+    return [num async for num in async_generator()]
